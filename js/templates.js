@@ -3,16 +3,14 @@ define([
   'text!../templates/detail.html',
   'text!../templates/search.html',
   'text!../templates/header.html',
-  'text!../templates/footer.html',
   'text!../templates/notFound.html'
-], function(DocumentsList, DocumentDetail, SearchResults, Header, Footer, NotFound) {
-  
+], function(DocumentsList, DocumentDetail, SearchResults, Header, NotFound) {
+
   return {
     DocumentsList:    _.template(DocumentsList),
     DocumentDetail:   _.template(DocumentDetail),
     SearchResults:    _.template(SearchResults),
     Header:           _.template(Header),
-    Footer:           _.template(Footer),
     NotFound:         _.template(NotFound)
   };
 

@@ -6,7 +6,7 @@ define([
   'prismic-helper',
   'prismic-configuration',
   'templates'
-], 
+],
 function($, _, Backbone, Prismic, Helpers, Configuration, Templates) {
 
   var AppRouter = Backbone.Router.extend({
@@ -29,12 +29,6 @@ function($, _, Backbone, Prismic, Helpers, Configuration, Templates) {
 
         $('header').html(
           Templates.Header({
-            ctx: ctx
-          })
-        );
-
-        $('footer').html(
-          Templates.Footer({
             ctx: ctx
           })
         );
@@ -86,7 +80,7 @@ function($, _, Backbone, Prismic, Helpers, Configuration, Templates) {
 
       // Setup the layout
       this.setupLayout();
-      
+
       // Fetch the document for the given id
       Helpers.getDocument(ctx, id, function(err, maybeResult) {
         if (err) { Configuration.onPrismicError(err); return; }
@@ -134,7 +128,7 @@ function($, _, Backbone, Prismic, Helpers, Configuration, Templates) {
       Helpers.getApiHome(function(err, Api) {
         if (err) { Configuration.onPrismicError(err); return; }
         document.location =
-          Api.data.oauthInitiate + 
+          Api.data.oauthInitiate +
           '?response_type=token' +
           '&client_id=' + encodeURIComponent(Configuration['clientId']) +
           '&redirect_uri=' + encodeURIComponent(document.location.href.replace(/#.*/, '') + '#auth_callback/') +
@@ -153,7 +147,7 @@ function($, _, Backbone, Prismic, Helpers, Configuration, Templates) {
         .value();
 
       Helpers.saveAccessTokenInSession(data['access_token']);
-      
+
       // Reload
       document.location = document.location.href.replace(/#.*/, '')
     }
