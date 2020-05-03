@@ -33,7 +33,7 @@ define([
           ref: (ref || api.data.master.ref),
           api: api,
           maybeRefParam: (ref && ref != api.data.master.ref ? '~' + ref : ''),
-          
+
           oauth: function() {
             var token = sessionStorage.getItem('ACCESS_TOKEN');
             return {
@@ -65,8 +65,8 @@ define([
       }
     },
 
-    getDocument: function(ctx, id, callback) {
-      ctx.api.forms('everything').ref(ctx.ref).query('[[:d = at(document.id, "' + id + '")]]').submit(function(err, documents) {
+    getDocument: function(ctx, type, id, callback) {
+      ctx.api.forms('everything').ref(ctx.ref).query('[[:d = at(my.' + type + '.uid, "' + id + '")]]').submit(function(err, documents) {
         if (err) callback(err);
         else callback(null, _.first(documents.results));
       });

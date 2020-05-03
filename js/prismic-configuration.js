@@ -14,7 +14,7 @@ define(function() {
 
     // -- Links resolution rules
     linkResolver: function(ctx, doc) {
-      return '#documents' + ctx.maybeRefParam + '/' + doc.id + '/' + doc.slug;
+      return '#d' + ctx.maybeRefParam + '/' + doc.type + '/' + doc.slug;
     },
 
     // -- To customize: what to do when an error happens on the prismic.io side

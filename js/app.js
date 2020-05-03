@@ -13,8 +13,8 @@ function($, _, Backbone, Prismic, Helpers, Configuration, Templates) {
 
     /** Routes **/
     routes: {
-      ':id/:slug'     : 'detail',
-      ''              : 'documents'
+      ''              : 'documents',
+      'd(~:ref)/:type/:slug'     : 'detail'
 
 
     },
@@ -72,13 +72,12 @@ function($, _, Backbone, Prismic, Helpers, Configuration, Templates) {
     }),
 
     /** Display a document **/
-    detail: Helpers.prismicRoute(function(ctx, id, slug) {
-
+    detail: Helpers.prismicRoute(function(ctx, type, slug) {
       // Setup the layout
       this.setupLayout();
 
       // Fetch the document for the given id
-      Helpers.getDocument(ctx, id, function(err, maybeResult) {
+      Helpers.getDocument(ctx, type, slug, function(err, maybeResult) {
         if (err) { Configuration.onPrismicError(err); return; }
 
         // Feed the template and update the DOM
