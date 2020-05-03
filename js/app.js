@@ -13,8 +13,8 @@ function($, _, Backbone, Prismic, Helpers, Configuration, Templates) {
 
     /** Routes **/
     routes: {
-      ''              : 'documents',
-      'd(~:ref)/:type/:slug'     : 'detail'
+      ''                        : 'documents',
+      '(~:ref):type/:slug'      : 'detail'
 
 
     },
