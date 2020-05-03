@@ -1,0 +1,37 @@
+<h2 id="title">
+    <% if(docs.results.length > 0) { %>
+        <%= docs.results.length %> documents
+    <% } else { %>
+        No results found
+    <% } %>
+</h2>
+
+<ul id="list">
+    <% for(var i=0; i<docs.results.length; i++) { %>
+        <li>
+            <a href="<%= ctx.linkResolver(ctx, docs.results[i]) %>">
+                <%= docs.results[i].slug %>
+            </a>
+        </li>
+    <% } %>
+</ul>
+
+<hr>
+
+<% if(docs.total_pages > 1) { %>
+    <ul id="pagination">
+        <% if(docs.prev_page) { %>
+            <li><a href="#" data-page="<%= page-1 %>">Previous</a></li>
+        <% } %>
+        <% for(var i=1; i<=docs.total_pages; i++) { %>
+            <% if (page == i) { %>
+                <li><%= i %></li>
+            <% } else { %>
+                <li><a href="#" data-page="<%= i %>"><%= i %></a></li>
+            <% } %>
+        <% } %>
+        <% if(docs.next_page) { %>
+            <li><a href="#" data-page="<%= page+1 %>">Next</a></li>
+        <% } %>
+    </ul>
+<% } %>
