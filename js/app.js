@@ -13,13 +13,9 @@ function($, _, Backbone, Prismic, Helpers, Configuration, Templates) {
 
     /** Routes **/
     routes: {
-      '(~:ref)(?p=:page)'              : 'documents',
-      'documents(~:ref)/:id/:slug'     : 'detail',
-      'search(~:ref)(/p=:page)/*q'               : 'search',
+      ':id/:slug'     : 'detail',
+      ''              : 'documents'
 
-      // OAuth
-      'signin'                         : 'signin',
-      'auth_callback/#*data'           : 'authCallback'
 
     },
 
@@ -48,7 +44,7 @@ function($, _, Backbone, Prismic, Helpers, Configuration, Templates) {
       page = parseInt(page);
 
       // Submit the `everything` form, using the current ref
-      ctx.api.form('everything').page(page || 1).ref(ctx.ref).submit(function(err, documents) {
+      ctx.api.form('everything').query('[[:d = at(document.type, "faq_section")]]').page(page || 1).ref(ctx.ref).submit(function(err, documents) {
         if (err) { Configuration.onPrismicError(err); return; }
 
         // Feed the template and update the DOM
